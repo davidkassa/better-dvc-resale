@@ -6,7 +6,7 @@ module.exports = {
     color: "#4c4c4c",
     titleFont: "Mouse+Memoirs",
     messageFont: "Roboto",
-    social: [],
+    social: [""],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
