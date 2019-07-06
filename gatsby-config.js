@@ -1,12 +1,12 @@
 module.exports = {
   siteMetadata: {
     title: "Better DVC Resale 🏰",
-    message: "Coming Soon - An Easier Way to Buy and Sell Disney Vacation Club Memberships.\n No Reduced Benefits and No Right of First Refusal - Making Dreams Come True 👸",
+    message: "An Easier Way to Buy and Sell Disney Vacation Club Memberships. No Reduced Benefits and No Right of First Refusal - Making Dreams Come True 👸",
     pattern: "Starry night",
     color: "#4c4c4c",
-    titleFont: "Mouse+Memoirs",
+    titleFont: "Mouse Memoirs",
     messageFont: "Roboto",
-    social: [""],
+    social: ["http://www.facebook.com/sharer.php?u=https://www.betterdvcresale.com"],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
