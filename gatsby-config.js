@@ -4,8 +4,9 @@ module.exports = {
     message: "Coming Soon - An Easier Way to Buy and Sell Disney Vacation Club Memberships.\n No Reduced Benefits and No Right of First Refusal - Making Dreams Come True 👸",
     pattern: "Starry night",
     color: "#4c4c4c",
-    titleFont: "Righteous",
-    messageFont: "Roboto"
+    titleFont: "Mouse+Memoirs",
+    messageFont: "Roboto",
+    social: [],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
