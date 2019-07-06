@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: "Better DVC Resale 🏰",
-    message: "An Easier Way to Buy and Sell Disney Vacation Club Memberships.\nNo Reduced Benefits and No Right of First Refusal.\nMaking Dreams Come True 👸",
+    message: "An Easier Way to Buy and Sell Disney Vacation Club Memberships.<br>No Reduced Benefits and No Right of First Refusal.<br>Making Dreams Come True 👸",
     pattern: "Starry night",
     color: "#4c4c4c",
     titleFont: "Mouse Memoirs",
