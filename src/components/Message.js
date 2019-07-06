@@ -21,10 +21,8 @@ const Message = (props) => (
         fontSize: "1em",
         textAlign: "center",
         }}
-      >{props.message.split('\n').map((item, key) => {
-          return <span key={key}>{item}<br/></span>
-        })}
-      }</p>
+        dangerouslySetInnerHTML={__html: props.message}
+      ></p>
     </div>
     )}
   </Transition>
