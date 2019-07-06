@@ -1,12 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: "Hi, looking for a starter? 🔎",
-    message: "🚧 Host me on your domain while you build your new Gatsby site! (or keep me longer, that's fine too) 👷",
-    pattern: "Arrows",
+    title: "Better DVC Resale 🏰",
+    message: "An Easier Way to Buy and Sell Disney Vacation Club Memberships.<br>No Reduced Benefits and No Right of First Refusal.<br>Making Dreams Come True 👸",
+    pattern: "Starry night",
     color: "#4c4c4c",
-    titleFont: "Righteous",
+    titleFont: "Mouse Memoirs",
     messageFont: "Roboto",
-    social: ["https://github.com/robinmetral/gatsby-starter-under-construction", "https://twitter.com/robinmetral"],
+    social: ["http://www.facebook.com/sharer.php?u=https://www.betterdvcresale.com"],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
