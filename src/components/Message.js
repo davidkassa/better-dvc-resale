@@ -21,7 +21,8 @@ const Message = (props) => (
         fontSize: "1em",
         textAlign: "center",
         }}
-      >{props.message}</p>
+        dangerouslySetInnerHTML={{__html: props.message}}
+      ></p>
     </div>
     )}
   </Transition>
