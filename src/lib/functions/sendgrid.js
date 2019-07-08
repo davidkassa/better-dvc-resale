@@ -54,7 +54,7 @@ function sendWelcomeEmail(
             }
           ],
           substitutions: {
-            "<%name%>": firstName
+            //            "<%name%>": firstName
           }
         }
       ],
@@ -87,17 +87,17 @@ exports.handler = function(event, context, callback) {
   } = process.env;
   const body = JSON.parse(event.body);
   const email = body.email;
-  const firstName = body.first_name;
+  // const firstName = body.first_name;
   const welcomeEmail = event.queryStringParameters.welcome_email === "true";
 
   client.setApiKey(SENDGRID_API_KEY);
-  addSendgridRecipient(client, email, firstName)
+  addSendgridRecipient(client, email) //, firstName)
     .then((response, body) => {
       if (welcomeEmail) {
         sendWelcomeEmail(
           client,
           email,
-          firstName,
+          // firstName,
           SENDGRID_WELCOME_SENDER_EMAIL,
           SENDGRID_WELCOME_SENDER_NAME,
           SENDGRID_WELCOME_TEMPLATE_ID

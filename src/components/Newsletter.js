@@ -23,10 +23,7 @@ const Newsletter = props => (
           }}
           dangerouslySetInnerHTML={{ __html: props.newsletter }}
         />
-        <form
-          action="/.netlify/functions/sendgrid?welcome_email=true"
-          name="mailinglist"
-        >
+        <form action="/.netlify/functions/sendgrid" name="mailinglist">
           <input
             type="email"
             style={{
