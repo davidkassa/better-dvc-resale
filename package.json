@@ -1,33 +1,36 @@
 {
-  "name": "gatsby-starter-under-construction",
-  "description": "Blazing fast \"Under Construction\" page with a blazing quick setup.",
-  "version": "1.1.0",
-  "author": "Robin Métral <robin@metral.ch>",
+  "name": "better-dvc-resale-under-construction",
+  "description": "Landing page for betterdvcresale.om",
+  "version": "0.1.0",
+  "author": "David Kassa",
   "dependencies": {
-    "gatsby": "^2.0.76",
-    "gatsby-plugin-manifest": "^2.0.13",
-    "gatsby-plugin-offline": "^2.0.21",
-    "gatsby-plugin-react-helmet": "^3.0.5",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-helmet": "^5.2.0",
+    "@sendgrid/client": "^6.4.0",
+    "gatsby": "^2.13.7",
+    "gatsby-plugin-manifest": "^2.2.1",
+    "gatsby-plugin-offline": "^2.2.1",
+    "gatsby-plugin-react-helmet": "^3.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-helmet": "^5.2.1",
     "react-social-icons": "^4.1.0",
-    "react-transition-group": "^2.5.3"
+    "react-transition-group": "^4.2.1"
   },
   "keywords": [
     "gatsby"
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "start": "npm run develop",
     "develop": "gatsby develop",
-    "start": "npm run develop"
+    "clean": "rm -rf .cache public",
+    "build": "npm run build:gatsby && npm run build:api",
+    "build:gatsby": "gatsby build",
+    "build:api": "netlify-lambda build src/lib/functions",
+    "serve": "npm run serve:gatsby",
+    "serve:gatsby": "gatsby serve",
+    "serve:api": "netlify-lambda serve src/lib/functions"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/robinmetral/gatsby-starter-under-construction"
-  },
-  "bugs": {
-    "url": "https://github.com/robinmetral/gatsby-starter-under-construction/issues"
+  "devDependencies": {
+    "netlify-lambda": "^1.5.0"
   }
 }

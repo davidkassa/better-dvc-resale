@@ -1,27 +1,29 @@
 module.exports = {
   siteMetadata: {
-    title: "Better DVC Resale 🏰",
-    message: "An Easier Way to Buy and Sell Disney Vacation Club Memberships.<br>No Reduced Benefits and No Right of First Refusal.<br>Making Dreams Come True 👸",
+    title: "Better DVC Resale 🏰",
+    message:
+      "An Easier Way to Buy and Sell Disney Vacation Club Memberships.<br>No Reduced Benefits and No Right of First Refusal.<br>Making Dreams Come True 👸",
     pattern: "Starry night",
-    color: "#4c4c4c",
+    color: "#a8a8a8",
     titleFont: "Mouse Memoirs",
     messageFont: "Roboto",
-    social: ["http://www.facebook.com/sharer.php?u=https://www.betterdvcresale.com"],
+    newsletter: "Find out how this works by joining the newsletter",
+    social: [""]
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: "gatsby-starter-under-construction",
-        short_name: "Under Construction",
+        name: "Better DVC Resale",
+        short_name: "Better DVC",
         start_url: "/",
-        background_color: "#4c4c4c",
-        theme_color: "#4c4c4c",
+        background_color: "#a8a8a8",
+        theme_color: "#a8a8a8",
         display: "standalone",
-        icon: "src/images/icon.png",
-      },
+        icon: "src/images/icon.png"
+      }
     },
     "gatsby-plugin-offline"
-  ],
-}
+  ]
+};
