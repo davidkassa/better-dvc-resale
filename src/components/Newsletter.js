@@ -9,7 +9,7 @@ export default class Newsletter extends Component {
     super();
     this.state = {
       email: "",
-      submitted: false
+      completeMessage: null
     };
   }
 
@@ -25,7 +25,7 @@ export default class Newsletter extends Component {
   onSubmit = e => {
     e.preventDefault();
     // get our form data out of state
-    const { email, submitted } = this.state;
+    const { email } = this.state;
 
     axios
       .post(
@@ -34,16 +34,18 @@ export default class Newsletter extends Component {
         { headers: { "content-type": "application/json" } }
       )
       .then(result => {
-        this.setState({ submitted: true });
+        this.setState({ completeMessage: "Thank You! See you real soon." });
       })
       .catch(err => {
-        this.setState({ submitted: true });
+        this.setState({
+          completeMessage: "Uh oh! Something went wrong - please try again."
+        });
       });
   };
 
   render() {
-    const { email, submitted } = this.state;
-    if (submitted) {
+    const { email, completeMessage } = this.state;
+    if (completeMessage) {
       return (
         <p
           style={{
@@ -51,11 +53,10 @@ export default class Newsletter extends Component {
             color: this.props.color,
             textAlign: "center",
             fontSize: "0.8em",
-            textAlign: "center",
             marginBottom: "0.5em"
           }}
         >
-          Thank You! See you real soon.
+          {completeMessage}
         </p>
       );
     }
