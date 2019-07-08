@@ -1,81 +1,136 @@
-import React from "react";
+import axios from "axios";
+import React, { Component } from "react";
 import { Transition } from "react-transition-group";
 
 import { defaultStyle, transitionStyles } from "../transitions";
 
-const Newsletter = props => (
-  <Transition in appear={true} timeout={2000}>
-    {state => (
-      <div
-        style={{
-          fontFamily: props.messageFont,
-          color: props.color,
-          textAlign: "center",
-          ...defaultStyle,
-          ...transitionStyles[state]
-        }}
-      >
+export default class Newsletter extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      submitted: false
+    };
+  }
+
+  onChange = e => {
+    /*
+      Because we named the inputs to match their
+      corresponding values in state, it's
+      super easy to update the state
+    */
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onSubmit = e => {
+    e.preventDefault();
+    // get our form data out of state
+    const { email, submitted } = this.state;
+
+    axios
+      .post(
+        "/.netlify/functions/sendgrid",
+        { email },
+        { headers: { "content-type": "application/json" } }
+      )
+      .then(result => {
+        this.setState({ submitted: true });
+      })
+      .catch(err => {
+        this.setState({ submitted: true });
+      });
+  };
+
+  render() {
+    const { email, submitted } = this.state;
+    if (submitted) {
+      return (
         <p
           style={{
+            fontFamily: this.props.messageFont,
+            color: this.props.color,
+            textAlign: "center",
             fontSize: "0.8em",
             textAlign: "center",
             marginBottom: "0.5em"
           }}
-          dangerouslySetInnerHTML={{ __html: props.newsletter }}
-        />
-        <form
-          method="POST"
-          action="/.netlify/functions/sendgrid"
-          name="mailinglist"
         >
-          <input
-            type="email"
+          Thank You! See you real soon.
+        </p>
+      );
+    }
+    return (
+      <Transition in appear={true} timeout={2000}>
+        {state => (
+          <div
             style={{
-              minWidth: "15em",
-              display: "inline-block",
-              verticalAlign: "middle",
-              margin: "0 0 1rem 0",
-              padding: "0.85em 1em",
-              border: "1px solid transparent",
-              borderRadius: "0",
-              WebkitTransition:
-                "background-color 0.25s ease-out, color 0.25s ease-out",
-              transition:
-                "background-color 0.25s ease-out, color 0.25s ease-out",
-              fontFamily: "inherit",
-              WebkitAppearance: "none",
-              lineHeight: "1"
-            }}
-            placeholder="Email Address"
-          />
-          <button
-            type="submit"
-            style={{
-              display: "inline-block",
-              verticalAlign: "middle",
-              margin: "0 0 1rem 0",
-              padding: "0.85em 1em",
-              border: "1px solid transparent",
-              borderRadius: "0",
-              WebkitTransition:
-                "background-color 0.25s ease-out, color 0.25s ease-out",
-              transition:
-                "background-color 0.25s ease-out, color 0.25s ease-out",
-              fontFamily: "inherit",
-              WebkitAppearance: "none",
-              lineHeight: "1",
+              fontFamily: this.props.messageFont,
+              color: this.props.color,
               textAlign: "center",
-              cursor: "pointer",
-              backgroundColor: "#1779ba",
-              color: "#fefefe" // :hover #14679e
+              ...defaultStyle,
+              ...transitionStyles[state]
             }}
           >
-            Join
-          </button>
-        </form>
-      </div>
-    )}
-  </Transition>
-);
-
-export default Newsletter;
+            <p
+              style={{
+                fontSize: "0.8em",
+                textAlign: "center",
+                marginBottom: "0.5em"
+              }}
+              dangerouslySetInnerHTML={{ __html: this.props.newsletter }}
+            />
+            <form onSubmit={this.onSubmit} name="mailinglist">
+              <input
+                type="email"
+                style={{
+                  minWidth: "15em",
+                  display: "inline-block",
+                  verticalAlign: "middle",
+                  margin: "0 0 1rem 0",
+                  padding: "0.85em 1em",
+                  border: "1px solid transparent",
+                  borderRadius: "0",
+                  WebkitTransition:
+                    "background-color 0.25s ease-out, color 0.25s ease-out",
+                  transition:
+                    "background-color 0.25s ease-out, color 0.25s ease-out",
+                  fontFamily: "inherit",
+                  WebkitAppearance: "none",
+                  lineHeight: "1"
+                }}
+                placeholder="Email Address"
+                name="email"
+                value={email}
+                onChange={this.onChange}
+              />
+              <button
+                type="submit"
+                style={{
+                  display: "inline-block",
+                  verticalAlign: "middle",
+                  margin: "0 0 1rem 0",
+                  padding: "0.85em 1em",
+                  border: "1px solid transparent",
+                  borderRadius: "0",
+                  WebkitTransition:
+                    "background-color 0.25s ease-out, color 0.25s ease-out",
+                  transition:
+                    "background-color 0.25s ease-out, color 0.25s ease-out",
+                  fontFamily: "inherit",
+                  WebkitAppearance: "none",
+                  lineHeight: "1",
+                  textAlign: "center",
+                  cursor: "pointer",
+                  backgroundColor: "#1779ba",
+                  color: "#fefefe" // :hover #14679e
+                }}
+              >
+                Join
+              </button>
+            </form>
+          </div>
+        )}
+      </Transition>
+    );
+  }
+}
