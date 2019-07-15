@@ -12,11 +12,14 @@
     "gatsby-plugin-offline": "^2.2.1",
     "gatsby-plugin-react-helmet": "^3.1.0",
     "http-proxy-middleware": "^0.19.1",
+    "json-colorizer": "^2.2.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-social-icons": "^4.1.0",
-    "react-transition-group": "^4.2.1"
+    "react-transition-group": "^4.2.1",
+    "traverse": "^0.6.6",
+    "winston": "^3.2.1"
   },
   "keywords": [
     "gatsby"
