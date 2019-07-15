@@ -17,7 +17,6 @@ const Title = props => (
           style={{
             fontFamily: props.titleFont,
             color: props.color,
-            fontSize: "3em",
             fontWeight: "normal",
             margin: "0",
             textAlign: "center"

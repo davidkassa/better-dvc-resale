@@ -7,6 +7,7 @@ import Message from "../components/Message";
 import Newsletter from "../components/Newsletter";
 import Social from "../components/Social";
 
+import "../styles/foundation-essential.css";
 import "../styles/main.css";
 import Patterns from "../styles/patterns.json";
 

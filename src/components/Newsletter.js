@@ -64,6 +64,7 @@ export default class Newsletter extends Component {
       <Transition in appear={true} timeout={2000}>
         {state => (
           <div
+            class="newsletter"
             style={{
               fontFamily: this.props.messageFont,
               color: this.props.color,
@@ -72,62 +73,40 @@ export default class Newsletter extends Component {
               ...transitionStyles[state]
             }}
           >
-            <p
-              style={{
-                fontSize: "0.8em",
-                textAlign: "center",
-                marginBottom: "0.5em"
-              }}
-              dangerouslySetInnerHTML={{ __html: this.props.newsletter }}
-            />
+            <p dangerouslySetInnerHTML={{ __html: this.props.newsletter }} />
             <form onSubmit={this.onSubmit} name="mailinglist">
-              <input
-                type="email"
-                style={{
+              <div class="input-group">
+                {/* style={{
                   minWidth: "15em",
-                  display: "inline-block",
-                  verticalAlign: "middle",
-                  margin: "0 0 1rem 0",
-                  padding: "0.85em 1em",
-                  border: "1px solid transparent",
-                  borderRadius: "0",
                   WebkitTransition:
                     "background-color 0.25s ease-out, color 0.25s ease-out",
                   transition:
                     "background-color 0.25s ease-out, color 0.25s ease-out",
-                  fontFamily: "inherit",
                   WebkitAppearance: "none",
-                  lineHeight: "1"
-                }}
-                placeholder="Email Address"
-                name="email"
-                value={email}
-                onChange={this.onChange}
-              />
-              <button
+                }} */}
+
+                <input
+                  class="input-group-field"
+                  type="email"
+                  placeholder="Email Address"
+                  name="email"
+                  value={email}
+                  onChange={this.onChange}
+                />
+                <div class="input-group-button">
+                  <input type="submit" class="button" value="Join" />
+                </div>
+              </div>
+              {/* <button
                 type="submit"
                 style={{
-                  display: "inline-block",
-                  verticalAlign: "middle",
-                  margin: "0 0 1rem 0",
-                  padding: "0.85em 1em",
-                  border: "1px solid transparent",
-                  borderRadius: "0",
                   WebkitTransition:
                     "background-color 0.25s ease-out, color 0.25s ease-out",
                   transition:
                     "background-color 0.25s ease-out, color 0.25s ease-out",
-                  fontFamily: "inherit",
                   WebkitAppearance: "none",
-                  lineHeight: "1",
-                  textAlign: "center",
-                  cursor: "pointer",
-                  backgroundColor: "#1779ba",
-                  color: "#fefefe" // :hover #14679e
                 }}
-              >
-                Join
-              </button>
+              > */}
             </form>
           </div>
         )}

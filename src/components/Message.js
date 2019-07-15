@@ -8,17 +8,15 @@ const Message = props => (
     {state => (
       <div
         style={{
-          maxWidth: "30em",
           padding: "0 1em",
           ...defaultStyle,
           ...transitionStyles[state]
         }}
       >
-        <p
+        <h2
           style={{
             fontFamily: props.messageFont,
             color: props.color,
-            fontSize: "1em",
             textAlign: "center"
           }}
           dangerouslySetInnerHTML={{ __html: props.message }}
