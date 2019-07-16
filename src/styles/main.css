@@ -22,7 +22,35 @@ h2 {
 
 .newsletter {
   margin-top: 1em;
+  text-align: center;
 }
 .newsletter p {
   margin-bottom: 0.5em;
+}
+
+/* CSS for initial page load */
+
+.fade-in-appear,
+.fade-in-enter {
+  opacity: 0;
+}
+
+.fade-in-appear-active,
+.fade-in-enter-active {
+  opacity: 1;
+  transition: opacity 0.4s ease-in-out;
+}
+
+/* CSS for submit of newsletter */
+
+.fade-refresh-enter {
+  opacity: 1;
+}
+.fade-refresh-enter-active {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+}
+.fade-refresh-enter-done {
+  opacity: 1;
+  transition: opacity 0.4s ease-in;
 }

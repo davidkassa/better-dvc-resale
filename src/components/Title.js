@@ -1,32 +1,27 @@
 import React from "react";
-import { Transition } from "react-transition-group";
-
-import { defaultStyle, transitionStyles } from "../transitions";
+import { CSSTransition } from "react-transition-group";
 
 const Title = props => (
-  <Transition in appear={true} timeout={400}>
-    {state => (
-      <div
+  <CSSTransition in appear={true} classNames="fade-in" timeout={400}>
+    <div
+      style={{
+        padding: "1em",
+        transitionDelay: "0.4s"
+      }}
+    >
+      <h1
         style={{
-          padding: "1em",
-          ...defaultStyle,
-          ...transitionStyles[state]
+          fontFamily: props.titleFont,
+          color: props.color,
+          fontWeight: "normal",
+          margin: "0",
+          textAlign: "center"
         }}
       >
-        <h1
-          style={{
-            fontFamily: props.titleFont,
-            color: props.color,
-            fontWeight: "normal",
-            margin: "0",
-            textAlign: "center"
-          }}
-        >
-          {props.title}
-        </h1>
-      </div>
-    )}
-  </Transition>
+        {props.title}
+      </h1>
+    </div>
+  </CSSTransition>
 );
 
 export default Title;

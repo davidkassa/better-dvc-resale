@@ -1,17 +1,27 @@
 import axios from "axios";
 import React, { Component } from "react";
-import { Transition } from "react-transition-group";
-
-import { defaultStyle, transitionStyles } from "../transitions";
+import { CSSTransition } from "react-transition-group";
 
 export default class Newsletter extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       email: "",
-      completeMessage: null
+      submitting: false,
+      submitted: false,
+
+      error: false,
+      completeMessage: this.props.newsletter
     };
   }
+
+  onEntered = (node, isAppearing) => {
+    let c = "Thank You! See you real soon.";
+    if (this.state.error) {
+      c = "Uh oh! Something went wrong - please try again.";
+    }
+    this.setState({ submitted: true, completeMessage: c });
+  };
 
   onChange = e => {
     /*
@@ -34,83 +44,74 @@ export default class Newsletter extends Component {
         { headers: { "content-type": "application/json" } }
       )
       .then(result => {
-        this.setState({ completeMessage: "Thank You! See you real soon." });
+        this.setState({ submitting: true });
       })
       .catch(err => {
-        this.setState({
-          completeMessage: "Uh oh! Something went wrong - please try again."
-        });
+        this.setState({ submitting: true, error: true });
       });
   };
 
   render() {
-    const { email, completeMessage } = this.state;
-    if (completeMessage) {
-      return (
-        <p
-          style={{
-            fontFamily: this.props.messageFont,
-            color: this.props.color,
-            textAlign: "center",
-            fontSize: "0.8em",
-            marginBottom: "0.5em"
-          }}
-        >
-          {completeMessage}
-        </p>
-      );
-    }
+    const { email, completeMessage, submitting, submitted } = this.state;
     return (
-      <Transition in appear={true} timeout={2000}>
-        {state => (
-          <div
-            class="newsletter"
+      <CSSTransition
+        appear={true}
+        enter={false}
+        exit={false}
+        classNames="fade-in"
+        in
+        timeout={2000}
+        style={{
+          transitionDelay: "2s"
+        }}
+      >
+        <div>
+          <CSSTransition
+            enter={true}
+            exit={false}
+            classNames="fade-refresh"
+            in={submitting}
+            onEntered={this.onEntered}
+            timeout={2000}
             style={{
-              fontFamily: this.props.messageFont,
-              color: this.props.color,
-              textAlign: "center",
-              ...defaultStyle,
-              ...transitionStyles[state]
+              transitionDelay: "0"
             }}
           >
-            <p dangerouslySetInnerHTML={{ __html: this.props.newsletter }} />
-            <form onSubmit={this.onSubmit} name="mailinglist">
-              <div class="input-group">
-                {/* style={{
-                  minWidth: "15em",
-                  WebkitTransition:
-                    "background-color 0.25s ease-out, color 0.25s ease-out",
-                  transition:
-                    "background-color 0.25s ease-out, color 0.25s ease-out",
-                  WebkitAppearance: "none",
-                }} */}
-
-                <input
-                  class="input-group-field"
-                  type="email"
-                  placeholder="Email Address"
-                  name="email"
-                  value={email}
-                  onChange={this.onChange}
-                />
-                <div class="input-group-button">
-                  <input type="submit" class="button" value="Join" />
-                </div>
-              </div>
-              {/* <button
-                type="submit"
+            <div>
+              <div
+                className="newsletter"
                 style={{
-                  WebkitTransition:
-                    "background-color 0.25s ease-out, color 0.25s ease-out",
-                  transition:
-                    "background-color 0.25s ease-out, color 0.25s ease-out",
-                  WebkitAppearance: "none",
+                  fontFamily: this.props.messageFont,
+                  color: this.props.color
                 }}
-              > */}
-            </form>
-          </div>
-        )}
-      </Transition>
+              >
+                <p dangerouslySetInnerHTML={{ __html: completeMessage }} />
+                <form
+                  style={{
+                    visibility: submitted ? "hidden" : "visible"
+                  }}
+                  onSubmit={this.onSubmit}
+                  name="mailinglist"
+                >
+                  <div className="input-group">
+                    <input
+                      className="input-group-field"
+                      type="email"
+                      placeholder="Email Address"
+                      name="email"
+                      value={email}
+                      onChange={this.onChange}
+                    />
+                    <div className="input-group-button">
+                      <input type="submit" className="button" value="Join" />
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </CSSTransition>
+        </div>
+      </CSSTransition>
     );
   }
 }
